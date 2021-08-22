@@ -6,7 +6,7 @@
 function validateSchema(schema) {
   return async (req, res, next) => {
     try {
-      const isValid = await schema.validate(req.body, { abortEarly: false });
+      await schema.validate(req.body, { abortEarly: false });
       next();
     } catch (error) {
       const newError = new Error('validation error');

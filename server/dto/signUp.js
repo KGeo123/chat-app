@@ -11,6 +11,7 @@ const signUpSchema = yup.object().shape({
       message: 'no bad words allowed',
       test: (value) => {
         const filter = new Filter();
+        filter.addWords(...process.env.MORE_BAD_WORDS.split('/')); // :) in .env for obvious reasons
         const cleanedUsername = filter.clean(value);
         return cleanedUsername === value;
       }
