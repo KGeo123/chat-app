@@ -19,6 +19,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/auth', authRouter);
+
+// this is just for testing
 app.get('/messages', isAuth,  (req, res, next) => {
   console.log('the user has been authenticated')
 })
