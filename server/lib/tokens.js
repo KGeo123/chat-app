@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 /**
  *
- * @param {object} payload the payload to be attached on the jwt
+ * @param {{}} payload the payload to be attached on the jwt
  * @returns {string} a newely generated jwt with 5 minutes of expiration time
  */
 export function generateAccessToken(payload) {
