@@ -39,7 +39,8 @@ export const login = async (req, res, next) => {
     }
     const newAccessToken = generateAccessToken({
       email,
-      userId: user._id.toString()
+      userId: user._id.toString(),
+      username: user.username
     });
     const newRefreshToken = generateRefreshToken(user._id.toString());
     user.refreshToken = newRefreshToken;
@@ -74,7 +75,8 @@ export const refreshAccessToken = async (req, res, next) => {
     const newRefreshToken = generateRefreshToken(user._id.toString());
     const newAccessToken = generateAccessToken({
       email: user.email,
-      userId: user._id.toString()
+      userId: user._id.toString(),
+      username: user.username
     });
     res.cookie('refresh_token', newRefreshToken, {
       httpOnly: true,
@@ -86,12 +88,10 @@ export const refreshAccessToken = async (req, res, next) => {
     if (!updatedUser) {
       throwError();
     }
-    res
-      .status(200)
-      .json({
-        message: 'successfully generated new access token',
-        accessToken: newAccessToken
-      });
+    res.status(200).json({
+      message: 'successfully generated new access token',
+      accessToken: newAccessToken
+    });
   } catch (error) {
     next(error);
   }

@@ -21,3 +21,17 @@ export function generateRefreshToken(userId) {
     expiresIn: '1w'
   });
 }
+
+/**
+ *
+ * @param {string} token
+ * @returns {{}} token payload or throws an error
+ */
+export function validateAccessToken(token) {
+  try {
+    const payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    return payload
+  } catch (error) {
+    throw error
+  }
+}

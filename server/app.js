@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import authRouter from './routes/auth.js';
+import isAuth from './middleware/isAuth.js';
 
 const app = express();
 dotenv.config();
@@ -18,6 +19,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/auth', authRouter);
+app.get('/messages', isAuth,  (req, res, next) => {
+  console.log('the user has been authenticated')
+})
 
 app.use((req, res, next) => {
   res.status(404).json({ message: 'no endpoint found' });
