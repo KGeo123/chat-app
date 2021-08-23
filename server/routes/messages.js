@@ -13,4 +13,6 @@ messagesRouter.post(
   messagesController.sendMessage
 );
 
+messagesRouter.get('/all-messages', isAuth, messagesController.getAllMessages);
+
 export default messagesRouter;
