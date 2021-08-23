@@ -38,8 +38,3 @@ export const getAllMessages = async (req, res, next) => {
     next(error);
   }
 };
-
-export const logout = async (req, res, next) => {
-  res.clearCookie('refresh_token');
-  res.json({message: 'succesfully logged out'});
-};

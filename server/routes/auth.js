@@ -3,7 +3,7 @@ import * as AuthController from '../controllers/auth.js';
 import validateSchema from '../middleware/validateSchema.js';
 import signUpSchema from '../dto/signUp.js';
 import loginSchema from '../dto/login.js';
-import isAuth from '../middleware/isAuth';
+import isAuth from '../middleware/isAuth.js';
 
 const authRouter = express.Router();
 
