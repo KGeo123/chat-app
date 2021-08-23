@@ -3,6 +3,7 @@ import { throwError } from '../lib/errors.js';
 
 function isAuth(req, res, next) {
   const accessToken = req.get('Authorization')?.split(' ')[1];
+  console.log(accessToken);
   if (!accessToken) {
     throwError('you are not authorized', 401);
   }

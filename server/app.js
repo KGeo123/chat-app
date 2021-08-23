@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import authRouter from './routes/auth.js';
 import isAuth from './middleware/isAuth.js';
 import Socket from './socket.js';
+import messagesRouter from './routes/messages.js';
 
 const app = express();
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/auth', authRouter);
+app.use('/messages', messagesRouter);
 
 // this is just for testing
 app.get('/messages', isAuth, (req, res, next) => {

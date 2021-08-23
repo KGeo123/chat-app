@@ -7,10 +7,10 @@ class Socket {
   }
 
   static getIo() {
-    if (!io) {
+    if (!this.io) {
       throw new Error('could not find connection');
     }
-    return io;
+    return this.io;
   }
 }
 

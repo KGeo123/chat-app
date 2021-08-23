@@ -9,6 +9,7 @@ function validateSchema(schema) {
       await schema.validate(req.body, { abortEarly: false });
       next();
     } catch (error) {
+      // console.log(error);
       const newError = new Error('validation error');
       newError.statusCode = 400;
       newError.description = error.errors;
