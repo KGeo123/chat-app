@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const Form = styled(FormikForm)`
   width: 100%;
   max-width: 30rem;
-  height: 65vh;
+  height: 82vh;
   background: white;
-  margin: auto;
+  margin:  2rem auto;
 	padding: 0.4rem;
 
   @media (min-width: 40rem) {

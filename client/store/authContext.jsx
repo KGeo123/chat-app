@@ -3,6 +3,7 @@ import useRefreshToken from 'hooks/useRefreshToken';
 
 const AuthCtx = React.createContext({
   email: '',
+  username: '',
   userId: '',
   accessToken: ''
 });

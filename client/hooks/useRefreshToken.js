@@ -22,8 +22,8 @@ export default function useRefreshToken() {
         }
         // todo: this may change
         const { accessToken, userData } = await response.json();
-        const { email, userId } = userData;
-        setUser({ accessToken, email, userId });
+        const { email, userId, username } = userData;
+        setUser({ accessToken, email, userId, username });
         setShouldDisplayContent(true);
       } catch (error) {
         router.replace('/signup');

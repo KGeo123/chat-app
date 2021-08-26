@@ -7,12 +7,9 @@
 }
 
 html {
-  background-image: linear-gradient(
-    to top right,
-    rgb(35, 74, 133),
-    rgb(12, 96, 223)
-  );
   background-repeat: no-repeat;
+  background-color: white;
+  height: 100vh;
 }
 
 body {
@@ -21,7 +18,10 @@ body {
 
 @media (min-width: 40rem) {
   html {
-    background-color: white;
-    height: 100vh;
+    background-image: linear-gradient(
+      to top right,
+      rgb(35, 74, 133),
+      rgb(12, 96, 223)
+    );
   }
 }

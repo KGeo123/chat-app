@@ -13,7 +13,6 @@ function isAuth(req, res, next) {
       userId: payload.userId,
       email: payload.email
     };
-    console.log(req.user);
     next();
   } catch (error) {
     throwError('you are not authorized', 401);

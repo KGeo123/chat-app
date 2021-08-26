@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 
 export const signUp = async (req, res, next) => {
   const { email, password, username } = req.body;
+  console.log(req.body);
   const hashedPassword = await hash(password, 16);
   const user = new User({ email, password: hashedPassword, username });
   try {
@@ -19,7 +20,11 @@ export const signUp = async (req, res, next) => {
     }
     res.status(201).json({
       message: 'Successfully created user',
-      user: { email: savedUser.email, username: savedUser.username }
+      user: {
+        email: savedUser.email,
+        username: savedUser.username,
+        userId: savedUser._id.toString()
+      }
     });
   } catch (error) {
     next(error);
