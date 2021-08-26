@@ -1,25 +1,31 @@
 import React from 'react';
 import useAuth from '../hooks/useAuth';
+import Form from '@/components/shared/Form';
+import Field from '@/components/shared/Field';
+import Logo from '@/components/shared/Logo';
+import { Formik } from 'formik';
+import Button from '@/components/shared/Button';
+import FieldContainer from '@/components/shared/FieldContainer';
 
 function SignUp() {
   const { user, setUser } = useAuth();
 
   return (
-    <form
-      onSubmit={async () => {
-        try {
-          const response = await fetch('http://localhost:5000/auth/signup');
-          const user = await response.json();
-          console.log(user);
-        } catch (error) {
-          console.error(error);
-        }
-      }}
-    >
-      <input type="text" name="email" />
-      <input type="text" name="username" />
-      <input type="text" name="password" />
-    </form>
+    <Formik>
+      <Form>
+        <Logo />
+        <FieldContainer>
+          <Field placeHolder="your email" type="text" name="email" />
+        </FieldContainer>
+        <FieldContainer>
+          <Field placeHolder="password" type="text" name="username" />
+        </FieldContainer>
+        <FieldContainer>
+          <Field placeHolder="confirm password" type="text" name="password" />
+        </FieldContainer>
+        <Button type="submit">Sign Up</Button>
+      </Form>
+    </Formik>
   );
 }
 
