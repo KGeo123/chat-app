@@ -61,9 +61,11 @@ export const login = async (req, res, next) => {
 };
 
 export const refreshAccessToken = async (req, res, next) => {
-  console.log(req.cookies);
   const refreshToken = req.cookies.refresh_token;
   try {
+    if (!refreshToken) {
+      throwError('you are not authorized', 401);
+    }
     const payload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
     const user = await User.findById(payload.userId);
     if (!user) {
@@ -90,6 +92,10 @@ export const refreshAccessToken = async (req, res, next) => {
     }
     res.status(200).json({
       message: 'successfully generated new access token',
+      userData: {
+        email: user.email,
+        userId: user._id.toString()
+      },
       accessToken: newAccessToken
     });
   } catch (error) {
