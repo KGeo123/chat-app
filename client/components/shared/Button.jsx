@@ -8,20 +8,21 @@ const Button = styled.button`
   color: white;
   border: none;
   background: rgb(12, 96, 223);
-	font-size: 1.8rem;
-	margin: 0.5rem 0;
-	padding: 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: all 0.2s ease-in-out;
-	cursor: pointer;
-	font-weight: 700;
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 700;
 
-	&:hover {
-		background: white;
-		color: rgb(12, 96, 223);
-	}
+  &:hover,
+  &:active {
+    background: white;
+    color: rgb(12, 96, 223);
+  }
 `;
 
 export default Button;

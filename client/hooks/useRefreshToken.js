@@ -25,6 +25,7 @@ export default function useRefreshToken() {
         const { email, userId, username } = userData;
         setUser({ accessToken, email, userId, username });
         setShouldDisplayContent(true);
+        router.replace('/chat-room');
       } catch (error) {
         router.replace('/signup');
       }

@@ -57,7 +57,7 @@ function SignUp() {
           const data = await response.json();
           setUser(data.user);
           actions.setSubmitting(false);
-          router.replace('/');
+          router.replace('/login');
         } catch (error) {
           // todo: redirect to error page
           console.log(error);
