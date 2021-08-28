@@ -18,6 +18,7 @@ const signUpSchema = yup.object().shape({
     }),
   password: yup
     .string()
+    .trim()
     .min(8, 'password must be larger than 8 characters')
     .required()
 });

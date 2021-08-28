@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Form = styled(FormikForm)`
   width: 100%;
   max-width: 30rem;
-  height: 82vh;
   background: white;
   margin:  2rem auto;
 	padding: 0.4rem;

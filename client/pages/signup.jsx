@@ -9,11 +9,24 @@ import FieldContainer from '@/components/shared/FieldContainer';
 import signUpValidationSchema from 'validationSchemas/signUp';
 import ErrorText from '@/components/shared/ErrorText';
 import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
+import useServerError from 'hooks/useServerError';
+
+function LoginPrompt() {
+  return (
+    <>
+      <span>already have an account...</span>
+      <Link href="/login">
+        <a>Login in</a>
+      </Link>
+    </>
+  );
+}
 
 function SignUp() {
   const { user, setUser } = useAuth();
-  const [serverError, setServerError] = useState('');
   const router = useRouter();
+  const [serverError, setServerError] = useServerError();
 
   const initialValues = {
     email: '',
@@ -21,10 +34,6 @@ function SignUp() {
     password: '',
     confirmPassword: ''
   };
-
-  useEffect(() => {
-    setTimeout(() => setServerError(''), 5000);
-  }, [serverError]);
 
   return (
     <Formik
@@ -91,6 +100,7 @@ function SignUp() {
           <Button disabled={isSubmitting} type="submit">
             Sign Up
           </Button>
+          <LoginPrompt />
         </Form>
       )}
     </Formik>
