@@ -8,7 +8,6 @@ export default function useRefreshToken() {
   const [shouldDisplayContent, setShouldDisplayContent] = useState(false);
 
   useEffect(() => {
-    console.log('use effect runned');
     const fetchUser = async () => {
       try {
         const refreshTokenUrl = 'http://localhost:5000/auth/refresh-token';
