@@ -11,7 +11,6 @@ function ChatRoom() {
   const { user, setUser } = useAuth();
   const router = useRouter();
   if (!user) router.replace('/signup');
-
   const messages = useSelector((state) => state.messages);
   const dispatch = useDispatch();
 

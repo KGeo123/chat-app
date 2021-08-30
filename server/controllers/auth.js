@@ -6,7 +6,6 @@ import jwt from 'jsonwebtoken';
 
 export const signUp = async (req, res, next) => {
   const { email, password, username } = req.body;
-  console.log(req.body);
   const hashedPassword = await hash(password, 16);
   const user = new User({ email, password: hashedPassword, username });
   try {
@@ -91,7 +90,6 @@ export const refreshAccessToken = async (req, res, next) => {
     });
     user.refreshToken = newRefreshToken;
     const updatedUser = await user.save();
-    console.log(updatedUser);
     if (!updatedUser) {
       throwError();
     }

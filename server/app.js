@@ -4,8 +4,9 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import authRouter from './routes/auth.js';
-import Socket from './socket.js';
 import messagesRouter from './routes/messages.js';
+import IO from './io.js';
+import Message from './models/message.js';
 
 const app = express();
 dotenv.config();
@@ -43,7 +44,18 @@ try {
   const server = app.listen(process.env.PORT || 5000, () => {
     console.log(`server listening on port ${process.env.PORT || 5000}`);
   });
-  Socket.connect(server);
+  IO.connect(server);
+
+  IO.getIO().on('connection', (socket) => {
+    socket.on('new-message', async (message) => {
+      const newMessage = new Message(message);
+      const savedMessage = await newMessage.save();
+      if (!savedMessage) {
+        throw new Error('could not save messages');
+      }
+      socket.broadcast.emit('add-message', newMessage);
+    });
+  });
 } catch (error) {
   console.log(error);
 }

@@ -6,6 +6,9 @@ const messageSlice = createSlice({
   reducers: {
     setMessages: (state, action) => {
       state.messages = action.payload;
+    },
+    addMessage: (state, action) => {
+      state.messages.push(action.payload);
     }
   }
 });

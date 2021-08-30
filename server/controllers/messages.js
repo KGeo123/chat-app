@@ -1,29 +1,5 @@
-import Socket from '../socket.js';
 import Message from '../models/message.js';
 import { throwError } from '../lib/errors.js';
-
-export const sendMessage = async (req, res, next) => {
-  const { value, senderId } = req.body;
-  const newMessage = new Message({ value, senderId });
-  const savedMessage = await newMessage.save();
-  if (!savedMessage) {
-    const error = new Error('could not send message');
-    error.statusCode = 409;
-    next(error);
-  }
-  console.log('sending message');
-  Socket.getIo().on('connection', (socket) => {
-    socket.broadcast.emit('message', {
-      action: 'new-message',
-      payoad: {
-        value: message,
-        user: username,
-        messageId: savedMessage._id.toString()
-      }
-    });
-  });
-  res.status(200).json({ message: 'succesfully sent message' });
-};
 
 export const getAllMessages = async (req, res, next) => {
   try {

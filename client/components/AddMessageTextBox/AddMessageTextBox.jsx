@@ -1,29 +1,32 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { BsFillPlayFill } from 'react-icons/bs';
-import fetchProtected from 'lib/fetchProtected';
 import useAuth from 'hooks/useAuth';
+import { io } from 'socket.io-client';
+import { useDispatch } from 'react-redux';
+import { messagesActions } from 'redux/messages';
+import { uuid } from 'uuidv4';
+
+const socket = io('http://localhost:5000');
 
 function AddMessageTextBox({ user }) {
   const inputRef = useRef();
   const auth = useAuth();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    socket.on('add-message', (message) => {
+      dispatch(messagesActions.addMessage(message));
+    });
+  }, [socket]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { newToken } = await fetchProtected(
-      'http://localhost:5000/messages/new-message',
-      user.accessToken,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          value: inputRef.current.value,
-          senderId: user.userId
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
-    if (newToken) {
-      auth.setUser({ ...auth.user, accessToken: newToken });
-    }
+    const message = {
+      value: inputRef.current.value,
+      senderId: user.userId
+    };
+    dispatch(messagesActions.addMessage({ ...message, id: uuid() }));
+    socket.emit('new-message', message);
   };
 
   return (

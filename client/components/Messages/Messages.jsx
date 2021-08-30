@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Messages({ user, messages }) {
+function Messages({ messages }) {
   return (
     <div>
       {messages.map((message) => (
-        <div>message</div>
+        <div key={message._id}>{message.value}</div>
       ))}
     </div>
   );

@@ -6,13 +6,6 @@ import messageSchema from '../dto/message.js';
 
 const messagesRouter = express.Router();
 
-messagesRouter.post(
-  '/new-message',
-  isAuth,
-  validateSchema(messageSchema),
-  messagesController.sendMessage
-);
-
 messagesRouter.get('/all-messages', isAuth, messagesController.getAllMessages);
 
 export default messagesRouter;
