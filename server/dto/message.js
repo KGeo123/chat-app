@@ -2,7 +2,7 @@ import yup from 'yup';
 import Filter from 'bad-words';
 
 const messageSchema = yup.object().shape({
-  message: yup
+  value: yup
     .string()
     .required()
     .test({
@@ -15,8 +15,7 @@ const messageSchema = yup.object().shape({
         return message === cleanedMessage;
       }
     }),
-  username: yup.string().required(),
-  userId: yup.string().required()
+  senderId: yup.string().required()
 });
 
 export default messageSchema;

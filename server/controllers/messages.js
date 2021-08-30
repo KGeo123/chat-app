@@ -3,8 +3,8 @@ import Message from '../models/message.js';
 import { throwError } from '../lib/errors.js';
 
 export const sendMessage = async (req, res, next) => {
-  const { message, username, userId } = req.body;
-  const newMessage = new Message({ value: message, senderId: userId });
+  const { value, senderId } = req.body;
+  const newMessage = new Message({ value, senderId });
   const savedMessage = await newMessage.save();
   if (!savedMessage) {
     const error = new Error('could not send message');

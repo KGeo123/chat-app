@@ -13,7 +13,6 @@ export default async function fetchProtected(url, accessToken, options = null) {
     shouldRefreshToken = true;
     const data = await response.json();
     token = data.accessToken;
-    console.log(token);
   }
   const response = await fetch(url, {
     ...options,

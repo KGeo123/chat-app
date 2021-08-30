@@ -5,6 +5,7 @@ import Messages from '@/components/Messages/Messages';
 import { useDispatch, useSelector } from 'react-redux';
 import { messagesActions } from 'redux/messages';
 import fetchProtected from 'lib/fetchProtected';
+import AddMessageTextBox from '@/components/AddMessageTextBox/AddMessageTextBox';
 
 function ChatRoom() {
   const { user, setUser } = useAuth();
@@ -29,9 +30,10 @@ function ChatRoom() {
   }, []);
 
   return (
+    // todo: implement the add message feature along with the redux part
     <>
       <Messages user={user} messages={messages} />
-      {/* <AddMessageTextBox /> */}
+      <AddMessageTextBox user={user} />
     </>
   );
 }
